@@ -1,0 +1,10 @@
+$(eval $(call addlib_s,libvirtiofs,$(CONFIG_LIBVIRTIOFS)))
+
+CINCLUDES-$(CONFIG_LIBVIRTIOFS)		+= -I$(LIBVIRTIOFS_BASE)/include
+CXXINCLUDES-$(CONFIG_LIBVIRTIOFS)		+= -I$(LIBVIRTIOFS_BASE)/include
+
+LIBVIRTIOFS_CFLAGS-$(call gcc_version_ge,8,0) += -Wno-cast-function-type
+
+LIBVIRTIOFS_SRCS-y += $(LIBVIRTIOFS_BASE)/virtiofs_dax.c
+LIBVIRTIOFS_SRCS-y += $(LIBVIRTIOFS_BASE)/virtiofs_vfsops.c
+LIBVIRTIOFS_SRCS-y += $(LIBVIRTIOFS_BASE)/virtiofs_vnops.c

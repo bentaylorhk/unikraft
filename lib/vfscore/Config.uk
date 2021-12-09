@@ -38,6 +38,10 @@ if LIBVFSCORE_AUTOMOUNT_ROOTFS
 		select LIBUK9P
 		select LIB9PFS
 
+		config LIBVFSCORE_ROOTFS_VIRTIOFS
+		bool "VirtioFS"
+		select LIBVIRTIOFS
+
 		config LIBVFSCORE_ROOTFS_INITRD
 		bool "InitRD"
 		select LIBRAMFS
@@ -66,6 +70,7 @@ if LIBVFSCORE_AUTOMOUNT_ROOTFS
 	string
 	default "ramfs" if LIBVFSCORE_ROOTFS_RAMFS
 	default "9pfs" if LIBVFSCORE_ROOTFS_9PFS
+	default "virtiofs" if LIBVFSCORE_ROOTFS_VIRTIOFS
 	default "initrd" if LIBVFSCORE_ROOTFS_INITRD
 	default LIBVFSCORE_ROOTFS_CUSTOM_ARG if LIBVFSCORE_ROOTFS_CUSTOM
 	default ""
@@ -80,6 +85,7 @@ if LIBVFSCORE_AUTOMOUNT_ROOTFS
 		Device to mount the filesystem from (e.g., on 9PFS this
 		is the name of the shared filesystem). Depending on the
 		selected filesystem, this option may not be required.
+		MAY ALSO INCLUDE VIRTIOFS HERE
 
 	# The root flags is hidden for RamFS
 	config LIBVFSCORE_ROOTFLAGS

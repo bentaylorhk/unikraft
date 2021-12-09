@@ -1,0 +1,4 @@
+config LIBVIRTIOFS
+	bool "virtiofs: virtio file system"
+	default n
+	depends on LIBVFSCORE
